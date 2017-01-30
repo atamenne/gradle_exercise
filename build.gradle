@@ -28,12 +28,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-run {
-    systemProperties System.getProperties()
-    args System.getProperty("args").split()
-}
-
-task sequencehelp {
+task sequencehelp << {
     println "Integer Sequence Project"
     println "Usage: gradle -q run -Dargs=\"(lazy|triangle) <positive-integer>\""
     println "Examples:"
@@ -41,4 +36,11 @@ task sequencehelp {
     println "      Lazy(5) = 16"
     println "    > gradle -q run -Dargs=\"triangle 4\""
     println "      Tri(4) = 10"
+}
+
+run {
+    systemProperties System.getProperties()
+    if (System.getProperty("args") != null) {
+        args System.getProperty("args").split()
+    }
 }
